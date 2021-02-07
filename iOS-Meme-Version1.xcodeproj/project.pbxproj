@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E6EB27925D019B8006E58B5 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6EB27825D019B8006E58B5 /* Meme.swift */; };
 		1ED114A225C72C1600ECCDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED114A125C72C1600ECCDAE /* AppDelegate.swift */; };
 		1ED114A425C72C1600ECCDAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED114A325C72C1600ECCDAE /* SceneDelegate.swift */; };
 		1ED114A625C72C1600ECCDAE /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED114A525C72C1600ECCDAE /* MemeEditorViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E6EB27825D019B8006E58B5 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		1ED1149E25C72C1600ECCDAE /* iOS-Meme-Version1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Meme-Version1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED114A125C72C1600ECCDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ED114A325C72C1600ECCDAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				1ED114AA25C72C1600ECCDAE /* Assets.xcassets */,
 				1ED114AC25C72C1600ECCDAE /* LaunchScreen.storyboard */,
 				1ED114AF25C72C1600ECCDAE /* Info.plist */,
+				1E6EB27825D019B8006E58B5 /* Meme.swift */,
 			);
 			path = "iOS-Meme-Version1";
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ED114A625C72C1600ECCDAE /* MemeEditorViewController.swift in Sources */,
+				1E6EB27925D019B8006E58B5 /* Meme.swift in Sources */,
 				1ED114A225C72C1600ECCDAE /* AppDelegate.swift in Sources */,
 				1ED114A425C72C1600ECCDAE /* SceneDelegate.swift in Sources */,
 			);

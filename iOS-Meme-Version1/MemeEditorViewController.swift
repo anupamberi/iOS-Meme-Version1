@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  ImagePicker
 //
 //  Created by Anupam Beri on 31/01/2021.
@@ -32,14 +32,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSAttributedString.Key.strokeWidth: -5.0,
     ];
-    
-    // MARK: The Meme Model object that inclues the text and images
-    struct Meme {
-        let topText: String
-        let bottomText: String
-        let originalImage: UIImage
-        let memedImage: UIImage
-    }
     
     // MARK: Viewcontroller Lifecycle functions
     
@@ -82,7 +74,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // Move the display frame upwards to display text being ediited by subtracting the keyboard height
     @objc func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        // Check if the first responder is the bottom text field. This is to avoid the sliding up when the
+        // top text field is selected.
+        if bottomTextField.isFirstResponder {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     // Reset the keyboard display to its original frame
@@ -99,17 +95,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // Select an image from photo library
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        self.pickAnImage(from: .photoLibrary)
     }
     
     // Select an image by activating the camera library
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        self.pickAnImage(from: .camera)
+    }
+    
+    // Pick an image from the given input source
+    func pickAnImage(from source: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -163,8 +161,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Generates a Memed image
     func generateMemeImage() -> UIImage {
         // Hide navbar and toolbar
-        self.navbar.isHidden = true
-        self.toolbar.isHidden = true
+        self.setNavAndToolbarHiddenStatus(hideStatus: true)
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -172,9 +169,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         UIGraphicsEndImageContext()
         
         // Show navbar and toolbar
-        self.navbar.isHidden = false
-        self.toolbar.isHidden = false
+        self.setNavAndToolbarHiddenStatus(hideStatus: false)
         return memedImage
+    }
+    
+    // Set the navbar and toolbar isHidden property to given status
+    func setNavAndToolbarHiddenStatus(hideStatus status: Bool) {
+        self.navbar.isHidden = status
+        self.toolbar.isHidden = status
     }
     
     // Present an activity controller to share the memed image
